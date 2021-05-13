@@ -1,4 +1,4 @@
-// HTML files: try the network first, then the cache.
+// HTML and JS files: try the network first, then the cache.
 // Other files: try the cache first, then the network.
 // Both: cache a fresh version if possible.
 // (beware: the cache will grow and grow; there's no cleanup)
@@ -19,7 +19,8 @@ addEventListener('fetch',  fetchEvent => {
       const myCache = await caches.open(cacheName);
       await myCache.put(request, responseCopy);
     }());
-    if (request.headers.get('Accept').includes('text/html')) {
+    if (request.headers.get('Accept').includes('text/html') ||
+        request.headers.get('Accept').includes('text/javascript')) {
       try {
         return await responseFromFetch;
       }
