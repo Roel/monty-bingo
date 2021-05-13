@@ -36,7 +36,7 @@ table#bingo {
 tr {
     text-align: center;
     vertical-align: middle;
-    background-color: beige;
+    background-color: #f5f5dc;
     user-select: none;
     height: 19vh;
     overflow: hidden;
