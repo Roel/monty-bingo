@@ -1,0 +1,20 @@
+{
+    "background_color": "beige",
+    "description": "Play Monty Bingo while watching Gardeners World.",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "monty_192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "monty_512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "name": "Monty Bingo",
+    "short_name": "Monty Bingo",
+    "start_url": "index.html"
+  }
