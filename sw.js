@@ -1,35 +1,14 @@
-// HTML and JS files: try the network first, then the cache.
-// Other files: try the cache first, then the network.
-// Both: cache a fresh version if possible.
-// (beware: the cache will grow and grow; there's no cleanup)
-
 const version = '0.1.0';
 
 const cacheName = 'files';
 
-addEventListener('fetch',  fetchEvent => {
-  const request = fetchEvent.request;
-  if (request.method !== 'GET') {
-    return;
-  }
-  fetchEvent.respondWith(async function() {
-    const responseFromFetch = fetch(request);
-    fetchEvent.waitUntil(async function() {
-      const responseCopy = (await responseFromFetch).clone();
-      const myCache = await caches.open(cacheName);
-      await myCache.put(request, responseCopy);
-    }());
-    if (request.headers.get('Accept').includes('text/html') ||
-        request.headers.get('Accept').includes('text/javascript')) {
-      try {
-        return await responseFromFetch;
-      }
-      catch(error) {
-        return caches.match(request);
-      }
-    } else {
-      const responseFromCache = await caches.match(request);
-      return responseFromCache || responseFromFetch;
-    }
-  }());
+addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.open(cacheName).then(function(cache) {
+      return fetch(event.request).then(function(response) {
+        cache.put(event.request, response.clone());
+        return response;
+      });
+    })
+  );
 });
