@@ -12,7 +12,8 @@ const words = [
     'soil', 'fragrance', 'mulch', 'bulb', 'water', 'pot', 'sun<wbr>shine', 'scent', 'protect',
     'Long<wbr>meadow', 'healthy', 'bees', 'national collection', 'brassica',
     'annual', 'biennial', 'allotment', 'shed', 'texture', 'lawn', 'meadow', 'propagate',
-    'seedling', 'foliage', 'firm it in', 'cuttings', 'fungi', 'mycor<wbr>rhizal powder'
+    'seedling', 'foliage', 'firm it in', 'cuttings', 'fungi', 'mycor<wbr>rhizal powder',
+    'topiary', 'bud'
 ];
 
 const bingoSize = 5;
