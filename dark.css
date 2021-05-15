@@ -9,7 +9,7 @@ tr {
 }
 
 td {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 4px 0px inset;
 }
 
 td.selected {
