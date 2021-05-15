@@ -1,0 +1,38 @@
+table, tr, td {
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+tr {
+    background-color: #30302d;
+    color: #ECF0DD;
+}
+
+td {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px inset;
+}
+
+td.selected {
+    background-color: #4e7546;
+}
+
+td.bingo {
+    background-color: #854960;
+}
+
+td:focus,
+td:active {
+    box-shadow: rgba(0, 0, 0, 0.48) 0px 0px 8px 2px inset;
+}
+
+div#overlay {
+    background-color: rgba(15, 15, 15, 0.9);
+}
+
+button {
+    background-color: #3b5d6b;
+}
+
+button#cancel {
+    background-color: #8a8a8a;
+}

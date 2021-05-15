@@ -37,6 +37,7 @@ tr {
     text-align: center;
     vertical-align: middle;
     background-color: #f5f5dc;
+    color: #2f4f4f;
     user-select: none;
     height: 19vh;
     overflow: hidden;
@@ -49,7 +50,7 @@ td {
 
 td.selected {
     background-color: #7ab36c;
-    color: beige;
+    color: #ECF0DD;
     text-decoration: line-through;
 }
 
