@@ -73,9 +73,16 @@ div#overlay {
 
 div#menu {
     margin: auto;
-    display: flex;
-    height: 75vh;
-    flex-direction: column;
+    height: 66vh;
+    width: 66vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10vmin;
+    grid-template-areas:
+      "new share"
+      "reset theme"
+      "cancel cancel";
 }
 
 .hidden {
@@ -85,11 +92,9 @@ div#menu {
 button {
     font-family: 'Patrick Hand', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 4vmin;
-    margin: auto;
     padding: 4vmin;
     user-select: none;
-    max-width: 50vw;
-    min-width: 10vw;
+    width: 100%;
     min-height: 8vmin;
     background-color: #6ba8c2;
     color: white;
@@ -107,6 +112,23 @@ td:active {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 8px 2px inset;
 }
 
+button#new {
+    grid-area: new;
+}
+
+button#reset {
+    grid-area: reset;    
+}
+
+button#share {
+    grid-area: share;
+}
+
+button#theme {
+    grid-area: theme;
+}
+
 button#cancel {
     background-color: #bdbdbd;
+    grid-area: cancel;
 }
