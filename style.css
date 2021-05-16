@@ -82,7 +82,7 @@ div#menu {
     grid-template-areas:
       "new share"
       "reset theme"
-      "cancel cancel";
+      "autosave cancel";
 }
 
 .hidden {
@@ -126,6 +126,10 @@ button#share {
 
 button#theme {
     grid-area: theme;
+}
+
+button#autosave {
+    grid-area: autosave;
 }
 
 button#cancel {

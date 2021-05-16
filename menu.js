@@ -46,6 +46,17 @@ shareButton.onclick = async function () {
     }
 }
 
+const autoSaveButton = document.getElementById("autosave");
+if (isAutoSave()) {
+    autoSaveButton.innerHTML = "Autosave off"
+} else {
+    autoSaveButton.innerHTML = "Autosave on"
+}
+autoSaveButton.onclick = function() {
+    toggleAutoSave();
+    hideMenu();
+}
+
 document.addEventListener('keyup', function (ev) {
     if (ev.code === 'KeyM') {
         showMenu();

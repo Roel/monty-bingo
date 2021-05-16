@@ -90,7 +90,7 @@ function bingoDetect() {
     }
 }
 
-function getShareUrl() {
+function getHash() {
     let hash = "";
 
     for (let row = 0; row < bingoSize; row++) {
@@ -106,18 +106,18 @@ function getShareUrl() {
             hash += hashIndex + hashChar;
         }
     }
+    return hash;
+}
+
+function getShareUrl() {
     const url = new URL(window.location)
     const urlParams = new URLSearchParams(url.search);
-    urlParams.set('q', hash);
+    urlParams.set('q', getHash());
     url.search = urlParams;
     return url.toString();
 }
 
-function fromHash() {
-    const url = new URL(window.location)
-    const urlParams = new URLSearchParams(url.search);
-    const hash = urlParams.get('q');
-
+function parseHash(hash) {
     let currentWords = [];
     if (hash) {
         let currentWords = hash.match(/.{1,3}/g).map(function (str) {
@@ -130,12 +130,50 @@ function fromHash() {
                 "selected": selected
             }
         });
+        return currentWords.reverse();
+    }
+}
+
+function fromHash() {
+    const url = new URL(window.location)
+    const urlParams = new URLSearchParams(url.search);
+    const hash = urlParams.get('q');
+
+    if (hash) {
         urlParams.delete('q');
         url.search = urlParams;
         window.history.replaceState(window.history.state, document.title, url);
-
-        return currentWords.reverse();
+        return parseHash(hash);
     }
+}
+
+function fromSaveGame() {
+    const storageSaveGame = "mb_savegame";
+    const saveGame = window.localStorage.getItem(storageSaveGame);
+
+    if (saveGame) {
+        return parseHash(saveGame);
+    }
+}
+
+function isAutoSave() {
+    const storageAutosave = "mb_autosave";
+    return window.localStorage.getItem(storageAutosave) === "true" || false;
+}
+
+function toggleAutoSave() {
+    const storageAutosave = "mb_autosave";
+    window.localStorage.setItem(storageAutosave, !isAutoSave());
+    if (isAutoSave()) {
+        autoSaveButton.innerHTML = "Autosave off"
+    } else {
+        autoSaveButton.innerHTML = "Autosave on"
+    }    
+}
+
+function save() {
+    const storageSaveGame = "mb_savegame";
+    window.localStorage.setItem(storageSaveGame, getHash());
 }
 
 function reset() {
@@ -145,6 +183,7 @@ function reset() {
             el.classList.remove("selected");
         }
     }
+    save();
     bingoDetect();
 }
 
@@ -158,10 +197,12 @@ function startNew() {
             el.innerHTML = randomWords.pop();
         }
     }
+    save();
     bingoDetect();
 }
 
-const wordsFromHash = fromHash();
+const bingoFromHash = fromHash();
+const bingoFromSaveGame = isAutoSave() ? fromSaveGame() : null;
 const randomWords = [...words];
 shuffleArray(randomWords);
 
@@ -170,8 +211,12 @@ for (let row = 0; row < bingoSize; row++) {
 
     for (let col = 0; col < bingoSize; col++) {
         let td = document.createElement("td");
-        if (wordsFromHash) {
-            let word = wordsFromHash.pop();
+        if (bingoFromHash) {
+            let word = bingoFromHash.pop();
+            td.innerHTML = word.word;
+            if (word.selected) { td.classList.add("selected"); }
+        } else if (bingoFromSaveGame) {
+            let word = bingoFromSaveGame.pop();
             td.innerHTML = word.word;
             if (word.selected) { td.classList.add("selected"); }
         } else {
@@ -179,6 +224,7 @@ for (let row = 0; row < bingoSize; row++) {
         }
         td.onclick = function () {
             this.classList.toggle("selected");
+            save();
             bingoDetect();
         };
         tr.appendChild(td);
@@ -186,4 +232,5 @@ for (let row = 0; row < bingoSize; row++) {
 
     bingoTable.appendChild(tr);
 }
+save();
 bingoDetect();

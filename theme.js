@@ -1,4 +1,4 @@
-const storageItem = "mb_theme";
+const storageTheme = "mb_theme";
 const themeButton = document.getElementById("theme");
 
 function setDarkTheme() {
@@ -11,7 +11,7 @@ function setDarkTheme() {
 
     head.appendChild(link);
     themeButton.innerHTML = "Light";
-    window.localStorage.setItem(storageItem, "dark");
+    window.localStorage.setItem(storageTheme, "dark");
 }
 
 function setLightTheme() {
@@ -22,18 +22,18 @@ function setLightTheme() {
         }
     }
     themeButton.innerHTML = "Dark";
-    window.localStorage.setItem(storageItem, "light");
+    window.localStorage.setItem(storageTheme, "light");
 }
 
 function getCurrentTheme() {
-    return window.localStorage.getItem(storageItem) || 'light';
+    return window.localStorage.getItem(storageTheme) || 'light';
 }
 
 function toggleTheme() {
     getCurrentTheme() === 'light' ? setDarkTheme() : setLightTheme();
 }
 
-if (window.localStorage.getItem(storageItem) === 'dark') {
+if (window.localStorage.getItem(storageTheme) === 'dark') {
     setDarkTheme();
 } else {
     setLightTheme();
