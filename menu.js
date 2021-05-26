@@ -1,13 +1,12 @@
+const overlay = document.getElementById("overlay");
+
 function showMenu() {
-    const menu = document.getElementById("overlay");
-    menu.style = "left: 0";
+    overlay.style = "transform: translate(150vw)";
 }
 
 function hideMenu() {
-    const menu = document.getElementById("overlay");
-    menu.style = "left: -200vw";
+    overlay.style = "";
 }
-
 
 const cancelButton = document.getElementById("cancel");
 cancelButton.onclick = function () { hideMenu(); }
@@ -64,12 +63,14 @@ document.addEventListener('keyup', function (ev) {
 });
 
 let slideEnabled = false;
+let currentSlideX = 0;
 
 document.addEventListener('touchstart', function (ev) {
-    let x = ev.targetTouches[0].pageX;
+    currentSlideX = ev.targetTouches[0].pageX;
     let maxX = window.outerWidth;
-    if (x < maxX / 5) {
+    if (currentSlideX < maxX / 5) {
         slideEnabled = true;
+        overlay.classList.remove("slideAnimation");
     } else {
         slideEnabled = false;
     }
@@ -79,10 +80,10 @@ document.addEventListener('touchmove', function (ev) {
     if (!slideEnabled) {
         return
     }
-    let x = ev.targetTouches[0].pageX;
+    currentSlideX = ev.targetTouches[0].pageX;
     let maxX = window.outerWidth;
-    if (x < maxX) {
-        document.getElementById("overlay").style = "left: calc(-100vw + " + x + "px)";
+    if (currentSlideX < maxX) {
+        overlay.style = "transform: translate(calc(50vw + " + currentSlideX + "px))";
     }
 });
 
@@ -91,14 +92,15 @@ document.addEventListener('touchend', function (ev) {
         return
     }
 
-    let x = document.getElementById("overlay").style.left;
-    x = x.match(/([0-9]+)px/)[1];
     let maxX = window.outerWidth;
 
-    if (x < maxX / 2) {
-        document.getElementById("overlay").style = "left: -200vw";
+    overlay.classList.add("slideAnimation");
+
+    if (currentSlideX < maxX / 3) {
+        hideMenu();
     } else {
-        document.getElementById("overlay").style = "left: 0";
+        showMenu();
     }
     slideEnabled = false;
+    currentSlideX = 0;
 });

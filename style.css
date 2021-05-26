@@ -60,7 +60,7 @@ td.bingo {
 
 div#overlay {
     position: fixed;
-    left: -200vw;
+    left: -150vw;
     top: 0;
     width: 100vw;
     height: 100vh;
@@ -69,6 +69,10 @@ div#overlay {
     backdrop-filter: blur(2px);
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.slideAnimation {
+    transition: transform 0.3s ease-in-out;
 }
 
 div#menu {
