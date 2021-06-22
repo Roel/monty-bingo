@@ -13,7 +13,8 @@ const words = [
     'Long<wbr>meadow', 'healthy', 'bees', 'national collection', 'brassica',
     'annual', 'biennial', 'allotment', 'shed', 'texture', 'lawn', 'meadow', 'propagate',
     'seedling', 'foliage', 'firm it in', 'cuttings', 'fungi', 'mycor<wbr>rhizal powder',
-    'topiary', 'bud', 'vegetable', 'fern', 'manure', 'nutrients', 'erica<wbr>ceous'
+    'topiary', 'bud', 'vegetable', 'fern', 'manure', 'nutrients', 'erica<wbr>ceous',
+    'herbaceous', 'label it'
 ];
 
 const bingoSize = 5;
