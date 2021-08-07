@@ -14,7 +14,7 @@ const words = [
     'annual', 'biennial', 'allotment', 'shed', 'texture', 'lawn', 'meadow', 'propagate',
     'seedling', 'foliage', 'firm it in', 'cuttings', 'fungi', 'mycor<wbr>rhizal powder',
     'topiary', 'bud', 'vegetable', 'fern', 'manure', 'nutrients', 'erica<wbr>ceous',
-    'herbaceous', 'label it'
+    'herbaceous', 'label it', 'garden', 'autumn', 'colour'
 ];
 
 const bingoSize = 5;
